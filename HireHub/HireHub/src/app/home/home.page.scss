@@ -63,3 +63,7 @@ ion-col {
   flex: 1;
   margin: 0 5px; /* Adjust margin as needed */
 }
+
+ion-button[color="custom"] {
+  --ion-color-base: #1271dd;
+}
