@@ -1,12 +1,12 @@
 <!-- home.page.html -->
-
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
+    <ion-title class="logo-title">
       <ion-img src="../assets/icon/HireHub.jpg" class="LogoTitle"></ion-img>
     </ion-title>
   </ion-toolbar>
 </ion-header>
+ 
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -31,6 +31,22 @@
           <ion-label position="floating">Password</ion-label>
           <ion-input type="password" [(ngModel)]="password"></ion-input>
         </ion-item>
+
+        <ion-row class="ion-align-items-center ion-justify-content-center" style="padding-top: 10px;">
+          <ion-col size="auto">
+            <p>Sign in with:</p>
+          </ion-col>
+          <ion-col size="auto">
+            <asl-google-signin-button type="icon" size="large" shape="circle" logo_alignment='center'></asl-google-signin-button>
+          </ion-col>
+          <ion-col size="auto">
+            <img src="../assets/icon/facebook-icon.png" (click)="signInWithFacebook()" class="facebook-icon-button">
+          </ion-col>
+        </ion-row>
+        
+        <ion-row *ngIf="user" class="ion-align-items-center ion-justify-content-center">
+          <p>Logged in as {{ user.email }}</p>
+        </ion-row>
 
         <ion-row>
           <ion-col>

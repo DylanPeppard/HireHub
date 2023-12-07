@@ -1,7 +1,8 @@
 // home.page.ts
 
 import { Component } from '@angular/core';
-
+import { FacebookLoginProvider } from '@abacritt/angularx-social-login';
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -10,8 +11,10 @@ import { Component } from '@angular/core';
 export class HomePage {
   username: string;
   password: string;
+  user: any;
+  loggedIn: any;
 
-  constructor() {
+  constructor(private authService: SocialAuthService) {
     this.username = '';
     this.password = '';
   }
@@ -25,4 +28,16 @@ export class HomePage {
   signIn() {
     this.username = '';
     this.password = '';}
+
+    signInWithFacebook() {
+      this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    }
+
+  ngOnInit() {
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+      console.log(this.user);
+    });
+  }
 }
